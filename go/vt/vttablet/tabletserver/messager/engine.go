@@ -72,13 +72,15 @@ type Engine struct {
 
 // NewEngine creates a new Engine.
 func NewEngine(tsv TabletService, se *schema.Engine, vs VStreamer) *Engine {
-	return &Engine{
+	me := &Engine{
 		tsv:          tsv,
 		se:           se,
 		vs:           vs,
 		postponeSema: semaphore.NewWeighted(int64(tsv.Config().MessagePostponeParallelism)),
 		managers:     make(map[string]*messageManager),
 	}
+	tsv.Exporter().HandleFunc("/messagez", me.messagezHandler)
+	return me
 }
 
 // Open starts the Engine service.

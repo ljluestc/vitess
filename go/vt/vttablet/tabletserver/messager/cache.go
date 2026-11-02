@@ -186,6 +186,14 @@ func (mc *cache) Discard(ids []string) {
 	}
 }
 
+// stats returns the number of messages waiting to be sent, the number of
+// messages being sent, and the max size of the cache.
+func (mc *cache) stats() (queued, inFlight, size int) {
+	mc.mu.Lock()
+	defer mc.mu.Unlock()
+	return len(mc.inQueue), len(mc.inFlight), mc.size
+}
+
 // Size returns the max size of cache.
 func (mc *cache) Size() int {
 	mc.mu.Lock()

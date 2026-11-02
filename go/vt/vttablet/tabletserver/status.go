@@ -70,6 +70,7 @@ const (
     </td>
     <td width="25%" border="">
       <a href="{{.Prefix}}/schemaz">Schema</a></br>
+      <a href="{{.Prefix}}/messagez">Messages</a></br>
       <a href="{{.Prefix}}/debug/tablet_plans">Schema&nbsp;Query&nbsp;Plans</a></br>
       <a href="{{.Prefix}}/debug/query_stats">Schema&nbsp;Query&nbsp;Stats</a></br>
       <a href="{{.Prefix}}/queryz">Query&nbsp;Stats</a></br>
